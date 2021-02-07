@@ -13,6 +13,7 @@ export class AppComponent {
   user = new User('Bob', 'rob@test.com', 5556665566, 'default', 'morning', true);
   topicHasError = true;
   submitted = false;
+  errorMessage;
 
   constructor(private enrollmentService: EnrollmentService) { }
   
@@ -29,6 +30,7 @@ export class AppComponent {
       console.log('Success!', data);
     }, error => {
         console.log('Error!', error);
+        this.errorMessage = error.statusText;
     });
   }
 }
