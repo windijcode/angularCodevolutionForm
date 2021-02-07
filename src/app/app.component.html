@@ -6,22 +6,28 @@
     {{user | json}}
     <div class="form-group">
       <label for="">Name</label>
-      <input type="text" class="form-control" name="userName" [(ngModel)]="user.name">
+      <input type="text" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" 
+             required class="form-control" name="userName" [(ngModel)]="user.name">
     </div>
+
     <div class="form-group">
       <label for="">Email</label>
       <input type="email" class="form-control" name="email" [(ngModel)]="user.email">
     </div>
+
     <div class="form-group">
       <label for="">Phone</label>
-      <input type="tel" class="form-control" name="phone" [(ngModel)]="user.phone">
+      <input type="tel" #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" 
+             pattern="^\d{10}$" class="form-control" name="phone" [(ngModel)]="user.phone">
     </div>
+    {{phone.invalid}} - {{phone.touched}}
     <div class="form-group">
       <select class="custom-select" name="topic" [(ngModel)]="user.topic">
         <option>I'm interested in</option>
         <option *ngFor="let topic of topics">{{topic}}</option>
       </select>
     </div>
+
     <div class="mb-3">
       <label for="">Time preference</label>
       <div class="form-check">
@@ -33,10 +39,12 @@
         <label for="" class="form-check-label">Evening (5PM - 8PM)</label>
       </div>
     </div>
+
     <div class="form-check mb-3">
       <input class="form-check-input" type="checkbox" name="subscribe" [(ngModel)]="user.subscribe">
       <label for="" class="form-check-label">Send me promotional offers</label>
     </div>
+
     <button type="submit" class="btn btn-primary">Submit form</button>
   </form>
 </div>
