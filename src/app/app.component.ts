@@ -12,6 +12,7 @@ export class AppComponent {
   topics = ['Angular', 'React', 'Vue'];
   user = new User('Bob', 'rob@test.com', 5556665566, 'default', 'morning', true);
   topicHasError = true;
+  submitted = false;
 
   constructor(private enrollmentService: EnrollmentService) { }
   
@@ -23,6 +24,7 @@ export class AppComponent {
   }
 
   onSubmit() {
+    this.submitted = true;
     this.enrollmentService.enroll(this.user).subscribe(data => {
       console.log('Success!', data);
     }, error => {
